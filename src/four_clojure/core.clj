@@ -38,3 +38,6 @@
 ;; #41
 (fn [l n] (vec (filter #(not= (mod (+ (.indexOf l %) 1) n) 0) l)))
 
+;; #33
+(defn p33 [l n]
+  (apply concat (map #(take n (iterate identity %)) l)))
