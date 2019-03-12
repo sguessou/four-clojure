@@ -35,3 +35,6 @@
 ;; #31
 #(partition-by identity %)
 
+;; #41
+(fn [l n] (vec (filter #(not= (mod (+ (.indexOf l %) 1) n) 0) l)))
+
