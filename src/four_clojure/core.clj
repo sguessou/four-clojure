@@ -31,3 +31,7 @@
       (when (not= (first @res-atom) x)
         (swap! res-atom (fn [c] (conj c x))))) 
     (reverse @res-atom)))
+
+;; #31
+#(partition-by identity %)
+
