@@ -48,3 +48,7 @@
         (map first (iterate
                     (fn [[a b]] 
                       [b (+ a b)]) [1 1]))))
+
+;; #29
+(defn p29 [s]
+  (apply str (filter #(Character/isUpperCase %) s)))
