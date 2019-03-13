@@ -52,3 +52,11 @@
 ;; #29
 (defn p29 [s]
   (apply str (filter #(Character/isUpperCase %) s)))
+
+;; #42
+(defn p42 [n]
+  (loop [i 1
+         result 1]
+    (if (= i n)
+      result
+      (recur (inc i) (* result (inc i))))))
