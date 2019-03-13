@@ -41,3 +41,10 @@
 ;; #33
 (defn p33 [l n]
   (apply concat (map #(take n (iterate identity %)) l)))
+
+;; #26
+(defn p26 [n]
+  (take n
+        (map first (iterate
+                    (fn [[a b]] 
+                      [b (+ a b)]) [1 1]))))
