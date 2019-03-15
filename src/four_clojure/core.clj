@@ -60,3 +60,7 @@
     (if (= i n)
       result
       (recur (inc i) (* result (inc i))))))
+
+;; #83
+(defn p83 [& b]
+  (boolean (and (some true? b) (some false? b))))
