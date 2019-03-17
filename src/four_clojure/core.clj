@@ -75,3 +75,8 @@
 (defn p107 [exponent]
   (fn [base]
     (reduce * 1 (repeat exponent base))))
+
+;; #90
+(defn descartes [a b]
+  (set (mapcat (fn [c]
+                  (map (fn [d] [c d]) b)) a)))
