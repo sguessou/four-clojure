@@ -80,3 +80,33 @@
 (defn descartes [a b]
   (set (mapcat (fn [c]
                   (map (fn [d] [c d]) b)) a)))
+
+
+;; Example of manipulating an atom in a multithreaded context
+(def counter (atom 0))
+
+(defn inc-print [v]
+  (println v)
+  (inc v))
+
+(let [n 2]
+  (future (dotimes [_ n] (swap! counter inc-print)))
+  (future (dotimes [_ n] (swap! counter inc-print)))
+  (future (dotimes [_ n] (swap! counter inc-print))))
+
+;; dosync example
+(def alice-height (ref 3))
+(def right-hand-bites (ref 10))
+
+(defn eat-from-right-hand []
+  (dosync (when (pos? @right-hand-bites)
+            (alter right-hand-bites dec)
+            (alter alice-height #(+ % 24)))))
+
+(let [n 2]
+  (future (dotimes [_ n] (eat-from-right-hand)))
+  (future (dotimes [_ n] (eat-from-right-hand)))
+  (future (dotimes [_ n] (eat-from-right-hand))))
+
+@alice-height
+@right-hand-bites
