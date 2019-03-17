@@ -110,3 +110,7 @@
 
 @alice-height
 @right-hand-bites
+
+;; p88
+(defn p88 [s1 s2]
+  (clojure.set/union (clojure.set/difference s1 s2) (clojure.set/difference s2 s1)))
