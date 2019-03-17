@@ -70,3 +70,8 @@
   (if (= b 0)
     a
     (gcd b (mod a b))))
+
+;; #107 
+(defn p107 [exponent]
+  (fn [base]
+    (reduce * 1 (repeat exponent base))))
