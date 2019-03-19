@@ -115,7 +115,7 @@
 (defn p88 [s1 s2]
   (clojure.set/union (clojure.set/difference s1 s2) (clojure.set/difference s2 s1)))
 
-;; p100
+;; #100
 (defn p100 [& b]
   (loop [i b
          result []]
@@ -123,3 +123,20 @@
       (apply min (apply clojure.set/intersection result)) 
       (recur (rest i)
              (conj result (set (map (partial * (first i)) (range 1 500))))))))
+
+;; #97
+(defn p97 [n]
+  (let [parse (fn p [l res]
+                (if (empty? l)
+                  res
+                  (p (rest l) (do
+                                    (if (> (count l) 1)
+                                      (conj res (+ (first l) (second l)))
+                                      (conj res 1))))))]
+    (loop [i n
+           arr [[1]]]
+      (if (zero? i)
+        (last (take n arr))
+        (recur (dec i) (conj arr (parse (last arr) [1])))))))
+
+
