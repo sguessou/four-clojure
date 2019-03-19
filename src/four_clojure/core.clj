@@ -139,4 +139,15 @@
         (last (take n arr))
         (recur (dec i) (conj arr (parse (last arr) [1])))))))
 
+;; #95
+(defn btree [s]
+  (if (nil? s)
+    true
+    (do
+      (if (false? s)
+        false
+        (do
+          (if (not= (count s) 3)
+            false
+            (and (btree (second s)) (btree (nth s 2)))))))))
 
