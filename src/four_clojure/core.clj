@@ -151,3 +151,17 @@
             false
             (and (btree (second s)) (btree (nth s 2)))))))))
 
+;; #96
+(defn symtree [s]
+  (if (nil? s)
+    true
+    (do
+      (if (false? s)
+        false
+        (do
+          (if (not= (count s) 3)
+            false
+            (do
+              (if-not (zero? (compare (vec (second s)) (vec (nth s 2))))
+                false
+                (and (symtree (second s)) (symtree (nth s 2)))))))))))
