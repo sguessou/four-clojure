@@ -165,3 +165,8 @@
               (if-not (zero? (compare (vec (second s)) (vec (nth s 2))))
                 false
                 (and (symtree (second s)) (symtree (nth s 2)))))))))))
+
+;; problem #46
+(defn p46 [f]
+  (fn [a b]
+    (f b a)))
