@@ -166,7 +166,15 @@
                 false
                 (and (symtree (second s)) (symtree (nth s 2)))))))))))
 
-;; problem #46
+;; #46
 (defn p46 [f]
   (fn [a b]
     (f b a)))
+
+;; #44
+(defn p44 [n s]
+  (let [n* (rem n (count s))]
+    (if (pos? n*)
+      (concat (drop n* s) (take n* s))
+      (concat (take-last (unchecked-negate n*) s) (drop-last (unchecked-negate n*) s))
+      )))
