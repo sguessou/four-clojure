@@ -195,3 +195,9 @@
     (partition cnt
                (apply interleave
                       (partition n s)))))
+
+;; #50
+(defn p50 [l]
+  (into #{} (vals (group-by type [1 :c 2 :a]))))
+
+
