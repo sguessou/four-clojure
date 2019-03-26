@@ -178,3 +178,20 @@
       (concat (drop n* s) (take n* s))
       (concat (take-last (unchecked-negate n*) s) (drop-last (unchecked-negate n*) s))
       )))
+
+(take-nth 2 [1 2 3 4 5 6])
+ 
+(difference '(1 2 3 4 5 6) '(1 3 5))
+
+(partition 3 (apply interleave  (partition 3 (range 9))))
+
+(take-nth 3 (range 9))
+
+(range 9)
+
+;; #43
+(defn p43 [s n]
+  (let [cnt (/ (count s) n)]
+    (partition cnt
+               (apply interleave
+                      (partition n s)))))
