@@ -196,8 +196,25 @@
                (apply interleave
                       (partition n s)))))
 
-;; #50
+;; W3D3#50
 (defn p50 [l]
-  (into #{} (vals (group-by type [1 :c 2 :a]))))
+  (into #{} (vals (group-by type l))))
+
+;; W3D4#67
+(defn p67 [n]
+  (loop [i 3
+         result []]
+    (if (= (count result) n)
+      result
+      (do
+        (let [res (reduce (fn [a b]
+                            (if (zero? (mod a b))
+                              (reduced nil)
+                              a))
+                          i (range 2 i))]
+          (recur (inc i)
+                 (if (nil? res)
+                   result
+                   (conj result res))))))))
 
 
