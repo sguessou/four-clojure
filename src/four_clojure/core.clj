@@ -203,7 +203,7 @@
 ;; W3D4#67
 (defn p67 [n]
   (loop [i 3
-         result []]
+         result [2]]
     (if (= (count result) n)
       result
       (do
@@ -217,4 +217,34 @@
                    result
                    (conj result res))))))))
 
+;; W3D5#77
+(defn p77 [l]
+  (into #{}
+        (filter 
+         (fn [s] 
+           (not= (count s) 1)) 
+         (into #{} 
+               (map (fn [a]
+                      (reduce 
+                       (fn  [b c]
+                         (if (zero? (compare 
+                                     (str (sort (last b))) 
+                                     (str (sort c))))
+                           (conj b c)
+                           b))
+                       #{a}
+                       l))
+                    l)))))
 
+;; #44
+(defn p55 [coll]
+  (loop [s (set coll)
+           c coll
+           result {}]
+      (if (empty? s)
+        result
+        (recur (rest s)
+               c
+               (conj result {(first s) (count (filter #(= (first s) %) c))})))))
+
+  
