@@ -236,7 +236,7 @@
                        l))
                     l)))))
 
-;; #44
+;; #55
 (defn p55 [coll]
   (loop [s (set coll)
            c coll
@@ -247,4 +247,18 @@
                c
                (conj result {(first s) (count (filter #(= (first s) %) c))})))))
 
-  
+;; #58
+(defn p58 [& f]
+  (fn [a & b]
+    (loop [fs (reverse f)
+           b b
+           result (if (nil? b) a (cons a b))]
+      (if (empty? fs)
+        result
+        (recur (rest fs)
+               nil
+               (do
+                 (if (nil? b)
+                   ((first fs) result)
+                   (apply (first fs) result))))))))
+
