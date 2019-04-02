@@ -262,3 +262,13 @@
                    ((first fs) result)
                    (apply (first fs) result))))))))
 
+;; #59
+(defn p59 [& f]
+  (fn [& b]
+    (loop [fs f
+          result []]
+      (if (empty? fs)
+        result
+        (recur (rest fs)
+               (conj result (apply (first fs) b)))))))
+
