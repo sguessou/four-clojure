@@ -272,3 +272,44 @@
         (recur (rest fs)
                (conj result (apply (first fs) b)))))))
 
+;; #60
+(defn p60 [f a & b]
+  (let [l (vec (flatten (conj (vec (conj [] a)) (vec b))))
+        res (if (nil? b)
+              (reduce f (flatten (vec a)))
+              (reduce f a (flatten (vec b))))
+        cnt (count l)]
+    (loop [i 0
+           result []]
+      (if (>= i cnt)
+        (repeatedly result)
+        (recur (inc i)
+               (if (coll? res) 
+                 (conj result (vec (take (+ i 1) l)))
+                 (conj result (apply f (take (+ i 1) l))) ))) )))
+
+
+;; another working solution
+(defn p60
+  ([f a]
+   (p60 f (first a) (rest a)))
+  ([f init [c & cols]]
+   (cons init (when c (p60 f (f init c) cols)))))
+
+
+;; #74
+(defn p74 [str]
+  (let [perfect-square? (fn [n]
+                          (let [f (Math/sqrt n)]
+                            (zero? (- f (int f)))))
+        str->vec (fn [s]
+                   (map #(Integer/parseInt %) (clojure.string/split s #",")))]
+    (clojure.string/join "," (filter #(perfect-square? %) (str->vec str)))))
+
+(p74 "4,5,6,7,8,9")
+
+(p74 "15,16,25,36,37")
+
+
+
+
