@@ -310,6 +310,16 @@
 
 (p74 "15,16,25,36,37")
 
-
+;; #80
+(defn p80 [n] 
+  (loop [i 1
+         result []]
+    (if (>= i n)
+      (= (reduce + 0 result) n)
+      (recur (inc i)
+             (do
+               (if (zero? (mod n i))
+                 (conj result i)
+                 result))))))
 
 
