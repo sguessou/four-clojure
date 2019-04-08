@@ -322,4 +322,11 @@
                  (conj result i)
                  result))))))
 
-
+;; #102
+(defn p102 [str]
+  (if (clojure.string/includes? str "-")
+    (do
+      (clojure.string/join ""
+       (map clojure.string/capitalize 
+            (clojure.string/split str #"-"))))
+    str))
