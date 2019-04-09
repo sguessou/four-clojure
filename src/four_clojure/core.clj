@@ -330,3 +330,17 @@
        (map clojure.string/capitalize 
             (clojure.string/split str #"-"))))
     str))
+
+;; #115
+(defn p115 [n]
+  (let [s (str n)
+        c (count s)
+        i (int (/ c 2))
+        f (fn [s] 
+            (reduce 
+             + 0
+             (map #(Integer/parseInt (str %)) s)))]
+    (if (= c 1)
+      true
+      (= (f (take (dec c) s)) (f (take-last (dec c) s))))))
+
